@@ -1,6 +1,7 @@
 const { userModal: users } = require('../modal')
 function addUser(user) {
-  return users.push(user)
+  users.push(user)
+  return users
 }
 
 function deleteUser(userName) {

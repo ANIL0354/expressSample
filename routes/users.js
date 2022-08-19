@@ -5,9 +5,7 @@ var router = express.Router()
 
 /* GET users listing. */
 router.get('user/', function (req, res, next) {
-  res.setHeader('Content-Type', 'application/json')
-  // res.json({    statusCode: 200,
-  //               status: true,...})
+  res.json({ statusCode: 200, status: true, ...controller.getUser() })
 })
 
 module.exports = router
