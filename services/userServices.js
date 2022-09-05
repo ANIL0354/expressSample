@@ -1,5 +1,6 @@
 const { userModal: users } = require('../modal')
 function addUser(user) {
+  user = { ...user, age: parseInt(user.age) }
   users.push(user)
   return users
 }
@@ -9,9 +10,15 @@ function deleteUser(userName) {
   users.slice(userNameIndex, 1)
 }
 
-function updateUser(userName, age) {
-  let userNameIndex = findUser(userName)
-  users.slice(userNameIndex, 1, { name: userName, age: age })
+function updateUser(user, userNameIndex) {
+  let newTempUser = {
+    ...users[userNameIndex],
+    ...user,
+    age: parseInt(user.age),
+  }
+  users.slice(userNameIndex, 1)
+  users[userNameIndex] = newTempUser
+  return users
 }
 
 function allUsers() {
@@ -21,7 +28,7 @@ function allUsers() {
 function findUser(userName) {
   let userNameIndex = -1
   users.forEach((item, index) => {
-    if (item === userName) {
+    if (item.name === userName) {
       return (userNameIndex = index)
     }
   })

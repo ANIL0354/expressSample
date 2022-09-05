@@ -23,4 +23,24 @@ router.post('/users', function (req, res, next) {
     res.json({ statusCode: 400, status: false })
   }
 })
+
+router.put('/users', function (req, res, next) {
+  let response = controller.updateUser(req.query.name, req.body)
+  if (response) {
+    res.json({ statusCode: 200, status: true, ...controller.getUser() })
+    next()
+  } else {
+    res.json({ statusCode: 400, status: false })
+  }
+})
+
+router.delete('/users', function (req, res, next) {
+  let response = controller.updateUser(req.query.name)
+  if (response) {
+    res.json({ statusCode: 200, status: true, ...controller.getUser() })
+    next()
+  } else {
+    res.json({ statusCode: 400, status: false })
+  }
+})
 module.exports = router
